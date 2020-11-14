@@ -36,7 +36,12 @@ class Authenticate
     public function handle($request, Closure $next, $guard = null)
     {
         if ($this->auth->guard($guard)->guest()) {
-            return response('Unauthorized. Please provide matching tokens', 401);
+            return response()->json([
+                'success' => false,
+                'message' => 'Unauthorized. Please provide matching tokens',
+                'data' => null,
+                'code' => 401
+            ], 409)->header('Content-Type', 'application/json');
         }
 
         return $next($request);
