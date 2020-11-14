@@ -33,4 +33,8 @@ class Admin extends Model implements AuthenticatableContract, AuthorizableContra
     public function remove($id){
         return $this->destroy($id);
     }
+
+    public function findBy($key, $value){
+        return $this->where($key, $value)->first();
+    }
 }

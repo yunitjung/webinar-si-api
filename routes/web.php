@@ -41,6 +41,7 @@ $router->group(['prefix' => 'api'], function () use ($router){
         $router->group(['prefix' => 'admin', 'namespace' => 'Admin'], function () use ($router){
             $router->group(['prefix' => 'auth'], function () use ($router){
                 $router->post('/create-token', 'AuthController@createToken');
+                $router->post('/login', 'AuthController@login');
             });
         });
     });
