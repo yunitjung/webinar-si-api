@@ -22,12 +22,9 @@ $router->group(['prefix' => 'api'], function () use ($router){
         $router->group(['prefix' => 'product'], function () use ($router){
             $router->get('/list', 'ProductController@list');
             $router->post('/find', 'ProductController@find');
-
-            $router->group(['middleware' => 'auth:admin_api'], function () use ($router){
-                $router->post('/store', 'ProductController@store');
-                $router->put('/update', 'ProductController@update');
-                $router->delete('/remove', 'ProductController@delete');
-            });
+            $router->post('/store', 'ProductController@store');
+            $router->put('/update', 'ProductController@update');
+            $router->delete('/remove', 'ProductController@delete');
         });
 
         $router->group(['prefix' => 'category'], function () use ($router){
@@ -36,13 +33,6 @@ $router->group(['prefix' => 'api'], function () use ($router){
             $router->post('/store', 'CategoryController@store');
             $router->put('/update', 'CategoryController@update');
             $router->delete('/remove', 'CategoryController@delete');
-        });
-
-        $router->group(['prefix' => 'admin', 'namespace' => 'Admin'], function () use ($router){
-            $router->group(['prefix' => 'auth'], function () use ($router){
-                $router->post('/create-token', 'AuthController@createToken');
-                $router->post('/login', 'AuthController@login');
-            });
         });
     });
 });
