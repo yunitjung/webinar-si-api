@@ -60,7 +60,7 @@ class CategoryController extends Controller
     }
 
     public function list(){
-        $data = CategoryResource::collection($this->table->all());
+        $data = $this->table->all();
 
         return $this->responseWithCondition($data, 'Successfully retrieve category list', 'Failed to retrieve category list');
     }
@@ -75,7 +75,7 @@ class CategoryController extends Controller
 
         $data = $this->table->findOrFail($request->id);
 
-        return $this->responseWithCondition(new CategoryResource($data), 'Successfully retrieve category', 'Failed to retrieve category');
+        return $this->responseWithCondition($data, 'Successfully retrieve category', 'Failed to retrieve category');
 
     }
 }
