@@ -61,7 +61,7 @@ class ProductController extends Controller
     }
 
     public function list(){
-        $data = $this->table->all();
+        $data = ProductResource::collection($this->table->all());
 
         return $this->responseWithCondition($data, 'Successfully retrieve product list', 'Failed to retrieve product list');
     }
@@ -76,7 +76,7 @@ class ProductController extends Controller
 
         $data = $this->table->findOrFail($request->id);
 
-        return $this->responseWithCondition($data, 'Successfully retrieve product', 'Failed to retrieve product');
+        return $this->responseWithCondition(new ProductResource($data), 'Successfully retrieve product', 'Failed to retrieve product');
 
     }
 }
