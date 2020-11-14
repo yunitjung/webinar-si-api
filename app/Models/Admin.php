@@ -3,9 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Laravel\Lumen\Auth\Authorizable;
+use Laravel\Passport\HasApiTokens;
 
-class Admin extends Model
+
+class Admin extends Model implements AuthenticatableContract, AuthorizableContract
 {
+    use Authenticatable, Authorizable, HasApiTokens;
+
     protected $fillable = [
         'id','name', 'password', 'email', 'is_active', 'reset_token', 'reset_token_expire'
     ];
